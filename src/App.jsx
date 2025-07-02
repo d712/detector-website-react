@@ -20,7 +20,7 @@ export default function ReactApp() {
     for (let i = 0; i < uploadedFiles.length; i++) {
       multipartFormdataBody.append('pics', uploadedFiles[i]);
     };
-    const response = await fetch('https://c3v4f9o49b.execute-api.us-east-2.amazonaws.com/run/', { method: 'POST', body: multipartFormdataBody });
+    const response = await fetch('https://c3v4f9o49b.execute-api.us-east-2.amazonaws.com/run', { method: 'POST', body: multipartFormdataBody });
     const result = await response.json();
     setMsg(result.findings);
   };
