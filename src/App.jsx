@@ -2,15 +2,15 @@ import { useState } from "react";
 import { useRef } from "react"
 
 export default function ReactApp() {
+  console.log('ReactApp rendered');
   const [msg, setMsg] = useState([]);
   const [files, setFiles] = useState(null);
   const uploadRef = useRef(null);
 
-  function handleClick() {
-    uploadRef.current.click();
-  };
-  function handleSubmit(e) {
+  function handleClick(e) {
     e.preventDefault();
+    console.log('handleClick uploadRef:', uploadRef.current);
+    uploadRef.current.click();
   };
   async function handleChange(e) {
     console.log('handleChange triggered, files:', e.target.files)
@@ -37,15 +37,12 @@ export default function ReactApp() {
         />
         <h1 style={{ fontSize: 'inherit' }}>Middle Finger Detector</h1>
       </ div>
-
       <div style={{
         display: 'flex', fontSize: '2rem', width: '100vw', justifyContent: 'center',
         alignItems: 'center'
       }}>
-        <form onSubmit={handleSubmit}>
-          <button style={{ fontSize: '0.4em' }} onClick={handleClick}>Upload Picture(s) and Run Detector</button>
-          <input type="file" multiple onChange={handleChange} ref={uploadRef} style={{ display: 'none' }}></input>
-        </form>
+        <button type="button" style={{ fontSize: '0.4em' }} onClick={handleClick}>Upload Picture(s) and Run Detector</button>
+        <input type="file" multiple onChange={handleChange} ref={uploadRef} style={{ display: 'none' }} ></input>
       </div>
       <div style={{
         width: '100vw',
